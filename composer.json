@@ -1,0 +1,21 @@
+{
+  "name": "devfym/intelliphp",
+  "description": "Machine Learning for PHP.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Yasunori M, Fukushima",
+      "email": "developer.fukushima@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "devfym\\IntelliPHP\\": "src/"
+    }
+  }
+}
