@@ -11,6 +11,6 @@ class IntelliPHP
 
     public function test()
     {
-        return 'This is a test.';
+        return 'This is a Test.';
     }
 }
