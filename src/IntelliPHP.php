@@ -8,7 +8,7 @@ class IntelliPHP
         //
     }
 
-    private function test() {
+    public function test() {
         return "This is a test.";
     }
 }
