@@ -4,11 +4,13 @@ namespace devfym\IntelliPHP;
 
 class IntelliPHP
 {
-    function __construct() {
+    public function __construct()
+    {
         //
     }
 
-    public function test() {
-        return "This is a test.";
+    public function test()
+    {
+        return 'This is a test.';
     }
 }
