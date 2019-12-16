@@ -15,8 +15,8 @@ class IntelliPHPTest extends TestCase
 
         $linear = new LinearRegression();
 
-        $linearTest1 = [[1,2,3,4,5], [1,2,3,4,5]];
-        $linearTest2 = [[2,4,6,8,10], [1,2,3,4,5]];
+        $linearTest1 = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
+        $linearTest2 = [[2, 4, 6, 8, 10], [1, 2, 3, 4, 5]];
 
         $linear->setTrain($linearTest1[0], $linearTest1[1]);
         $linear->model();
@@ -26,6 +26,6 @@ class IntelliPHPTest extends TestCase
         $linear->setTrain($linearTest2[0], $linearTest2[1]);
         $linear->model();
 
-        $this->assertEquals(25,$linear->predict(50));
+        $this->assertEquals(25, $linear->predict(50));
     }
 }
