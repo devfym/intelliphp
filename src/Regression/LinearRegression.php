@@ -4,7 +4,6 @@ namespace devfym\IntelliPHP\Regression;
 
 class LinearRegression
 {
-
     private $x;
     private $y;
     private $n;
@@ -25,8 +24,9 @@ class LinearRegression
         $k = count($l);
         $t = 0;
 
-        for($i = 0; $i < $k; $i++)
+        for ($i = 0; $i < $k; $i++) {
             $t += $l[$i];
+        }
 
         return $t / $k;
     }
@@ -59,7 +59,6 @@ class LinearRegression
 
     public function predict($p = 0) : float
     {
-        return round( ($p * $this->m) + $this->c, 2);
+        return round(($p * $this->m) + $this->c, 2);
     }
-
 }
