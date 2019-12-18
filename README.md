@@ -49,7 +49,7 @@ $linear->setTrain($x_train, $y_train);
 $linear->model();
 
 // Predict Value by passing Predictor via predict(@float predictor) method.
-$linear->predict(7)
+$linear->predict(7);
 
 // it will return a value of 6.
 ```
