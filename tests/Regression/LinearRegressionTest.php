@@ -44,6 +44,6 @@ class LinearRegressionTest extends TestCase
             $y_predict[$n] = $linear->predict($x_train[$n]);
         }
 
-        $this->assertNotEquals(0,$linear->validate('mean_squared_error', $y_train,$y_predict));
+        $this->assertNotEquals(0, $linear->validate('mean_squared_error', $y_train, $y_predict));
     }
 }
