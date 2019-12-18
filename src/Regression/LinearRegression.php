@@ -16,7 +16,7 @@ class LinearRegression
         $this->y = [];
         $this->n = 0;
         $this->m = 0;
-        $this->b = 0;
+        $this->c = 0;
     }
 
     private function getMean($l = []) : float
@@ -45,6 +45,16 @@ class LinearRegression
 
         $this->m = $my / $mx;
         $this->c = $my - ($mx * $this->m);
+    }
+
+    public function getSlope() : float
+    {
+        return round($this->m, 4);
+    }
+
+    public function getIntercept() : float
+    {
+        return round($this->c, 4);
     }
 
     public function predict($p = 0) : float
