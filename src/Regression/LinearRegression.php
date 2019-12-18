@@ -61,4 +61,19 @@ class LinearRegression
     {
         return round(($p * $this->m) + $this->c, 2);
     }
+
+    public function validate($validation_type, $y_train, $y_test) : float
+    {
+        $n = count($y_train);
+        $total_diff = 0;
+
+        if ($validation_type == 'mean_squared_error') {
+            for ($i = 0; $i < $n; $i++) {
+                $total_diff += $y_test[$i] - $y_train[$i];
+            }
+            $total_diff /= $n;
+        }
+
+        return $total_diff;
+    }
 }

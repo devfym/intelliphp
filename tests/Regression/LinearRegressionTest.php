@@ -37,5 +37,13 @@ class LinearRegressionTest extends TestCase
             $this->assertGreaterThan($y_train[$n] * 0.95, $y_predict);
             $this->assertLessThan($y_train[$n] * 1.05, $y_predict);
         }
+
+        $y_predict = [];
+
+        for ($n = 0; $n < count($y_train); $n++) {
+            $y_predict[$n] = $linear->predict($x_train[$n]);
+        }
+
+        $this->assertNotEquals(0,$linear->validate('mean_squared_error', $y_train,$y_predict));
     }
 }
