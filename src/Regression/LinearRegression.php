@@ -13,19 +13,19 @@ class LinearRegression
     /**
      * LinearRegression constructor.
      */
-
     public function __construct()
     {
-        $this->predictors  = [];
-        $this->outcomes    = [];
+        $this->predictors = [];
+        $this->outcomes = [];
         $this->sample_size = 0;
-        $this->slope       = 0;
-        $this->intercept   = 0;
+        $this->slope = 0;
+        $this->intercept = 0;
     }
 
     private function getMean($list = []) : float
     {
         $mean = (array_sum($list) / count($list));
+
         return round($mean, 4);
     }
 
