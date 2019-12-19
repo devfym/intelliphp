@@ -4,62 +4,60 @@ namespace devfym\IntelliPHP\Regression;
 
 class LinearRegression
 {
-    private $x;
-    private $y;
-    private $n;
-    private $m;
-    private $c;
+    private $predictors;
+    private $outcomes;
+    private $sample_size;
+    private $slope;
+    private $intercept;
 
+    /**
+     * LinearRegression constructor.
+     */
     public function __construct()
     {
-        $this->x = [];
-        $this->y = [];
-        $this->n = 0;
-        $this->m = 0;
-        $this->c = 0;
+        $this->predictors = [];
+        $this->outcomes = [];
+        $this->sample_size = 0;
+        $this->slope = 0;
+        $this->intercept = 0;
     }
 
-    private function getMean($l = []) : float
+    private function getMean($list = []) : float
     {
-        $k = count($l);
-        $t = 0;
+        $mean = (array_sum($list) / count($list));
 
-        for ($i = 0; $i < $k; $i++) {
-            $t += $l[$i];
-        }
-
-        return $t / $k;
+        return round($mean, 4);
     }
 
-    public function setTrain($x = [], $y = []) : void
+    public function setTrain($predictors = [], $outcomes = []) : void
     {
-        $this->n = count($x);
-        $this->x = $x;
-        $this->y = $y;
+        $this->sample_size = count($predictors);
+        $this->predictors = $predictors;
+        $this->outcomes = $outcomes;
     }
 
     public function model() : void
     {
-        $mx = $this->getMean($this->x);
-        $my = $this->getMean($this->y);
+        $mx = $this->getMean($this->predictors);
+        $my = $this->getMean($this->outcomes);
 
-        $this->m = $my / $mx;
-        $this->c = $my - ($mx * $this->m);
+        $this->slope = $my / $mx;
+        $this->intercept = $my - ($mx * $this->slope);
     }
 
     public function getSlope() : float
     {
-        return round($this->m, 4);
+        return round($this->slope, 4);
     }
 
     public function getIntercept() : float
     {
-        return round($this->c, 4);
+        return round($this->intercept, 4);
     }
 
     public function predict($p = 0) : float
     {
-        return round(($p * $this->m) + $this->c, 2);
+        return round(($p * $this->slope) + $this->intercept, 2);
     }
 
     public function validate($validation_type, $y_train, $y_test) : float

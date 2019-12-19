@@ -28,7 +28,7 @@ No stable version yet, so please install dev-master.
 
 Linear Regression
 
-```
+```php
 // Call autoload to import Composer packages
 require_once __DIR__ . '/vendor/autoload.php';
 
