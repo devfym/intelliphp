@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: User
- * Date: 19/12/2019
- * Time: 08:39
- */
 
 namespace devfym\IntelliPHP\Data;
-
 
 class Series
 {

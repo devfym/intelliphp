@@ -22,9 +22,45 @@ No stable version yet, so please install dev-master.
 
 ### 3. Features
 
+- DataFrame
 - Linear Regression
 
 ### 4. Examples
+
+DataFrame
+
+```php
+// Call autoload to import Composer packages
+require_once __DIR__ . '/vendor/autoload.php';
+
+// Import DataFrame
+$df = new DataFrame();
+
+// Create sample array-formatted data
+$data = [
+    'name' => ['aaron','bambi','celine','dennise'],
+    'age'  => [12, 14, 16, 18]
+];
+
+// set data into DataFrame
+$df->readArray($data);
+
+// Get Columns
+$df->getColumns();
+
+// Get Index
+$df->getIndex();
+
+// Get array of Name
+$df->name->getList();
+
+// Get array of Age
+$df->age->getList();
+
+// Get Mean of Age
+$df->age->mean();
+
+```
 
 Linear Regression
 
