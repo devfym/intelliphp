@@ -23,10 +23,10 @@ No stable version yet, so please install dev-master.
 ## Features
 
 - Data
-    - [DataFrame](docs/Data/DataFrame.md)
+    - [DataFrame](Data/DataFrame.md)
 - Regression
-    - [Linear Regression](docs/Regression/LinearRegression.md)
- 
+    - [Linear Regression](Regression/LinearRegression.md)
+
 ## Examples
 
 #### DataFrame
