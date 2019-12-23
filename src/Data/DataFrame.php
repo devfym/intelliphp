@@ -22,7 +22,7 @@ class DataFrame
         $this->index = count($arr[$this->columns[0]]);
 
         // Create Series instance for each column.
-        foreach($this->columns as $column) {
+        foreach ($this->columns as $column) {
             $this->{$column} = new Series();
             $this->{$column}->setList($arr[$column]);
         }
@@ -40,6 +40,6 @@ class DataFrame
 
     public function getObjectVariables() : array
     {
-        return get_object_vars ($this);
+        return get_object_vars($this);
     }
 }

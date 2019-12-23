@@ -13,7 +13,7 @@ class DataFrameTest extends TestCase
 
         $data = [
           'name' => ['a', 'b', 'c', 'd'],
-          'age'  => [12, 14, 16, 18]
+          'age'  => [12, 14, 16, 18],
         ];
 
         //データをセット
