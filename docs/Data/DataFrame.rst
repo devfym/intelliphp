@@ -1,14 +1,6 @@
 DataFrame
 =========
 
--  Load DataFrame class.
--  Import data into DataFrame.
--  DataFrame Methods
--  Series Methods
-
-Load DataFrame class
---------------------
-
 Import composer packages by calling ``autoload.php``.
 
 .. code:: php
