@@ -7,37 +7,31 @@ class LinearRegression
     /**
      * @var array
      */
-
     private $predictors;
 
     /**
      * @var array
      */
-
     private $outcomes;
 
     /**
      * @var int
      */
-
     private $sample_size;
 
     /**
      * @var float
      */
-
     private $slope;
 
     /**
      * @var float
      */
-
     private $intercept;
 
     /**
      * LinearRegression constructor.
      */
-
     public function __construct()
     {
         $this->predictors = [];

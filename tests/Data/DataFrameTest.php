@@ -12,16 +12,16 @@ class DataFrameTest extends TestCase
         $df = new DataFrame();
 
         $data = [
-            'name' => ['a', 'b', 'c', 'd'],
-            'age'  => [12, 14, 16, 18],
-            'height' => [168, 172, 178, 180]
+            'name'   => ['a', 'b', 'c', 'd'],
+            'age'    => [12, 14, 16, 18],
+            'height' => [168, 172, 178, 180],
         ];
 
         //DataFrameにデータを追加
         $df->readArray($data);
 
         //カラム名だけ取得
-        $this->assertEquals(['name', 'age','height'], $df->getColumns());
+        $this->assertEquals(['name', 'age', 'height'], $df->getColumns());
 
         //データのindexを取得
         $this->assertEquals(4, $df->getIndex());
