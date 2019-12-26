@@ -14,4 +14,4 @@ before_script:
   - composer install --no-interaction
 
 script:
-  - vendor/bin/phpunit tests/IntelliPHPTest.php
+  - vendor/bin/phpunit

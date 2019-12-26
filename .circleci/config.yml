@@ -32,4 +32,4 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       # run tests
-      - run: php ./vendor/bin/phpunit tests/IntelliPHPTest.php
+      - run: php ./vendor/bin/phpunit
