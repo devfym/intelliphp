@@ -24,12 +24,12 @@ Features
 
 -  Data
 
-   -  `DataFrame <Data/DataFrame.md>`__
-   -  `Series <Data/Series.md>`__
+   -  `DataFrame <Data/DataFrame.html>`__
+   -  `Series <Data/Series.html>`__
 
 -  Regression
 
-   -  `Linear Regression <Regression/LinearRegression.md>`__
+   -  `Linear Regression <Regression/LinearRegression.html>`__
 
 Examples
 --------
