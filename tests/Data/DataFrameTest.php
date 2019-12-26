@@ -12,39 +12,43 @@ class DataFrameTest extends TestCase
         $df = new DataFrame();
 
         $data = [
-            'name'   => ['a', 'b', 'c', 'd'],
-            'age'    => [12, 14, 16, 18],
-            'height' => [168, 172, 178, 180],
+            'name'      => ['aaron','bambi','celine','dennise', 'edwin'],
+            'age'       => [12, 14, 16, 18, 20],
+            'height_cm' => [150, 168, 172, 178, 180],
+            'weight_kg' => [36, 40, 56, 60, 78]
         ];
 
         //DataFrameにデータを追加
         $df->readArray($data);
 
         //カラム名だけ取得
-        $this->assertEquals(['name', 'age', 'height'], $df->getColumns());
+        $this->assertEquals(['name', 'age', 'height_cm', 'weight_kg'], $df->getColumns());
 
         //データのindexを取得
-        $this->assertEquals(4, $df->getIndex());
+        $this->assertEquals(5, $df->getIndex());
 
         //Nameのseriesを取得
-        $this->assertEquals(['a', 'b', 'c', 'd'], $df->name->getSample());
+        $this->assertEquals(['aaron','bambi','celine','dennise', 'edwin'], $df->name->all());
 
         //Ageの平均値を取得
-        $this->assertEquals(15, $df->age->mean());
+        $this->assertEquals(16, $df->age->mean());
 
         //Ageの最大値を取得
-        $this->assertEquals(18, $df->age->max());
+        $this->assertEquals(20, $df->age->max());
 
         //Ageの最小値を取得
         $this->assertEquals(12, $df->age->min());
 
         //DataFrameにあるすべての平均値を取得
-        $this->assertEquals(['age' => 15, 'height' => 174.5], $df->mean());
+        $this->assertEquals(['age' => 16, 'height_cm' => 169.6, 'weight_kg' => 54.0], $df->mean());
 
         //DataFrameにあるすべての最大値を取得
-        $this->assertEquals(['age' => 18, 'height' => 180], $df->max());
+        $this->assertEquals(['age' => 20, 'height_cm' => 180, 'weight_kg' => 78], $df->max());
 
         //DataFrameにあるすべての最小値を取得
-        $this->assertEquals(['age' => 12, 'height' => 168], $df->min());
+        $this->assertEquals(['age' => 12, 'height_cm' => 150, 'weight_kg' => 36], $df->min());
+
+        //Get name within index of 1 - 3
+        $this->assertEquals(['bambi','celine','dennise'], $df->name->withinIndexOf(1,3));
     }
 }

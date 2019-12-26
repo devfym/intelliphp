@@ -2,37 +2,34 @@
 
 namespace devfym\IntelliPHP\Data;
 
-class DataFrame
+use devfym\IntelliPHP\Math\StatisticInterface;
+
+class DataFrame implements StatisticInterface
 {
     /**
      * @var array
      * List of Column names.
      */
-
-    private $columns;
+    private $columns = [];
 
     /**
      * @var int
      * Number of Sample.
      */
-
-    private $index;
+    private $index = 0;
 
     /**
      * DataFrame constructor.
      */
-
     public function __construct()
     {
-        $this->columns = [];
-        $this->index = 0;
+        //
     }
 
     /**
      * @param array $arr
      * Store given array-formatted data into series.
      */
-
     public function readArray($arr = []) : void
     {
         // Set Columns
@@ -52,7 +49,6 @@ class DataFrame
      * @return array
      * Get list of column names.
      */
-
     public function getColumns() : array
     {
         return $this->columns;
@@ -62,25 +58,24 @@ class DataFrame
      * @return int
      * Get Number of Sample.
      */
-
     public function getIndex() : int
     {
         return $this->index;
     }
 
     /**
+     * @param int $floatPoint
      * @return array
      * Get list of mean value in DataFrame.
      */
-
-    public function mean($FloatPoint = 2) : array
+    public function mean($floatPoint = 1) : array
     {
         // Initialize mean.
         $mean = [];
 
         foreach ($this->columns as $column) {
-            if ($this->{$column}->getDataType() == 'Numeric') {
-                $mean[$column] = $this->{$column}->mean($FloatPoint);
+            if ($this->{$column}->dataType() == 'Numeric') {
+                $mean[$column] = $this->{$column}->mean($floatPoint);
             }
         }
 
@@ -88,19 +83,18 @@ class DataFrame
     }
 
     /**
-     * @param int $FloatPoint
+     * @param int $floatPoint
      * @return array
      * Get list of max value in DataFrame.
      */
-
-    public function max($FloatPoint = 2) : array
+    public function max($floatPoint = 2) : array
     {
         // Initialize max.
         $max = [];
 
         foreach ($this->columns as $column) {
-            if ($this->{$column}->getDataType() == 'Numeric') {
-                $max[$column] = $this->{$column}->max($FloatPoint);
+            if ($this->{$column}->dataType() == 'Numeric') {
+                $max[$column] = $this->{$column}->max($floatPoint);
             }
         }
 
@@ -108,19 +102,18 @@ class DataFrame
     }
 
     /**
-     * @param int $FloatPoint
+     * @param int $floatPoint
      * @return array
      * Get list of min value in DataFrame.
      */
-
-    public function min($FloatPoint = 2) : array
+    public function min($floatPoint = 2) : array
     {
         // Initialize min.
         $min = [];
 
         foreach ($this->columns as $column) {
-            if ($this->{$column}->getDataType() == 'Numeric') {
-                $min[$column] = $this->{$column}->min($FloatPoint);
+            if ($this->{$column}->dataType() == 'Numeric') {
+                $min[$column] = $this->{$column}->min($floatPoint);
             }
         }
 
@@ -131,7 +124,6 @@ class DataFrame
      * @return array
      * Get List of Object in Class.
      */
-
     public function getObjectVariables() : array
     {
         return get_object_vars($this);
