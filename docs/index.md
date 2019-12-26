@@ -24,6 +24,7 @@ No stable version yet, so please install dev-master.
 
 - Data
     - [DataFrame](Data/DataFrame.md)
+    - [Series](Data/Series.md)
 - Regression
     - [Linear Regression](Regression/LinearRegression.md)
 
@@ -57,10 +58,10 @@ $df->getColumns();
 $df->getIndex();
 
 // Get array of Name
-$df->name->getList();
+$df->name->all();
 
 // Get array of Age
-$df->age->getList();
+$df->age->all();
 
 // Get Mean of Age
 $df->age->mean();
