@@ -8,23 +8,27 @@ class BasicStatistic
      * @var
      * Stores series of data in single array format.
      */
+
     protected $Sample;
 
     /**
      * @var
      * Stores total number of $Sample.
      */
+
     protected $SampleCount;
 
     /**
      * @var
      * Stores if $Sample data is numeric or string value.
      */
+
     protected $DataType;
 
     /**
      * BasicStatistics constructor.
      */
+
     public function __construct()
     {
         $this->Sample = [];
@@ -34,8 +38,9 @@ class BasicStatistic
 
     /**
      * @param array $Sample
-     *                      Set $Sample value.
+     * Set $Sample value.
      */
+
     public function setSample($Sample = []) : void
     {
         $this->Sample = $Sample;
@@ -45,8 +50,9 @@ class BasicStatistic
 
     /**
      * @return string
-     *                Determine if $Sample data is 'Numeric' or 'Object' type.
+     * Determine if $Sample data is 'Numeric' or 'Object' type.
      */
+
     public function isNumeric() : string
     {
         try {
@@ -66,8 +72,9 @@ class BasicStatistic
 
     /**
      * @return string
-     *                Get DataType of Series.
+     * Get DataType of Series.
      */
+
     public function getDataType() : string
     {
         return $this->DataType;
@@ -75,8 +82,9 @@ class BasicStatistic
 
     /**
      * @return array
-     *               Get $Sample value.
+     * Get $Sample value.
      */
+
     public function getSample() : array
     {
         return $this->Sample;
@@ -84,10 +92,10 @@ class BasicStatistic
 
     /**
      * @param int $FloatPoint
-     *
      * @return float
-     *               Compute mean value of $Sample.
+     * Compute mean value of $Sample.
      */
+
     public function mean($FloatPoint = 2) : float
     {
         try {
@@ -99,10 +107,10 @@ class BasicStatistic
 
     /**
      * @param int $FloatPoint
-     *
      * @return float
-     *               Determine max value in $Sample.
+     * Determine max value in $Sample.
      */
+
     public function max($FloatPoint = 2) : float
     {
         try {
@@ -123,10 +131,10 @@ class BasicStatistic
 
     /**
      * @param int $FloatPoint
-     *
      * @return float
-     *               Determine min value in $Sample.
+     * Determine min value in $Sample.
      */
+    
     public function min($FloatPoint = 2) : float
     {
         try {

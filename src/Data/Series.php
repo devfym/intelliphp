@@ -9,6 +9,7 @@ class Series extends BasicStatistic
     /**
      * Series constructor.
      */
+
     public function __construct()
     {
         parent::__construct();

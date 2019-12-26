@@ -6,19 +6,22 @@ class DataFrame
 {
     /**
      * @var array
-     *            List of Column names.
+     * List of Column names.
      */
+
     private $columns;
 
     /**
      * @var int
-     *          Number of Sample.
+     * Number of Sample.
      */
+
     private $index;
 
     /**
      * DataFrame constructor.
      */
+
     public function __construct()
     {
         $this->columns = [];
@@ -27,8 +30,9 @@ class DataFrame
 
     /**
      * @param array $arr
-     *                   Store given array-formatted data into series.
+     * Store given array-formatted data into series.
      */
+
     public function readArray($arr = []) : void
     {
         // Set Columns
@@ -46,8 +50,9 @@ class DataFrame
 
     /**
      * @return array
-     *               Get list of column names.
+     * Get list of column names.
      */
+
     public function getColumns() : array
     {
         return $this->columns;
@@ -55,8 +60,9 @@ class DataFrame
 
     /**
      * @return int
-     *             Get Number of Sample.
+     * Get Number of Sample.
      */
+
     public function getIndex() : int
     {
         return $this->index;
@@ -64,8 +70,9 @@ class DataFrame
 
     /**
      * @return array
-     *               Get list of mean value in DataFrame.
+     * Get list of mean value in DataFrame.
      */
+
     public function mean($FloatPoint = 2) : array
     {
         // Initialize mean.
@@ -82,10 +89,10 @@ class DataFrame
 
     /**
      * @param int $FloatPoint
-     *
      * @return array
-     *               Get list of max value in DataFrame.
+     * Get list of max value in DataFrame.
      */
+
     public function max($FloatPoint = 2) : array
     {
         // Initialize max.
@@ -102,10 +109,10 @@ class DataFrame
 
     /**
      * @param int $FloatPoint
-     *
      * @return array
-     *               Get list of min value in DataFrame.
+     * Get list of min value in DataFrame.
      */
+
     public function min($FloatPoint = 2) : array
     {
         // Initialize min.
@@ -122,8 +129,9 @@ class DataFrame
 
     /**
      * @return array
-     *               Get List of Object in Class.
+     * Get List of Object in Class.
      */
+
     public function getObjectVariables() : array
     {
         return get_object_vars($this);
