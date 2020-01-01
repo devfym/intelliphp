@@ -152,6 +152,98 @@ class Series implements StatisticInterface, DataManipulationInterface
     }
 
     /**
+     * @param int $Q
+     * @param int $floatPoint
+     * @return float
+     * Determine Q-th Quartile in $Sample.
+     */
+    public function quartile($Q = 1, $floatPoint = 2) : float
+    {
+        try {
+
+            //Sort Data into ascending order.
+            $sorted_sample = $this->Sample;
+
+            sort($sorted_sample);
+
+            $quartile = ($Q / 4) * (count($this->Sample) + 1);
+
+            return $sorted_sample[$quartile - 1];
+
+        } catch (\Throwable $e) {
+
+            throw new $e();
+
+        }
+    }
+
+    /**
+     * @param int $floatPoint
+     * @return float
+     * Determine 2nd Quartile in $sample.
+     */
+    public function median($floatPoint = 2) : float
+    {
+        try {
+
+            return $this->quartile(2, $floatPoint);
+
+        } catch (\Throwable $e) {
+
+            throw new $e();
+
+        }
+    }
+
+    /**
+     * @param int $floatPoint
+     * @return float
+     * Determine Variance of $Sample.
+     */
+    public function variance($floatPoint = 4) : float
+    {
+        try {
+
+            $mean = $this->mean(4);
+            $total_s = 0;
+
+            foreach($this->Sample as $s) {
+                $total_s += pow(($s - $mean), 2);
+            }
+
+            $variance = $total_s / count($this->Sample);
+
+            return round($variance, $floatPoint);
+
+
+        } catch (\Throwable $e) {
+
+            throw new $e;
+
+        }
+    }
+
+    /**
+     * @param int $floatPoint
+     * @return float
+     * Determine Standard Deviation of $Sample.
+     */
+    public function std($floatPoint = 2) : float
+    {
+        try {
+
+            $std = sqrt($this->variance());
+
+            return round($std, $floatPoint);
+
+        } catch (\Throwable $e) {
+
+            throw new $e();
+
+        }
+    }
+
+    /**
      * @return array
      * Get $Sample value.
      */

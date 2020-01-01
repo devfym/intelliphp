@@ -121,6 +121,74 @@ class DataFrame implements StatisticInterface
     }
 
     /**
+     * @param int $Q
+     * @param int $floatPoint
+     * @return array
+     * Get list of Q-th quartile value in DataFrame.
+     */
+    public function quartile($Q = 1, $floatPoint = 2) : array
+    {
+        // Initialize quartile.
+        $quartile = [];
+
+        foreach ($this->columns as $column) {
+            if ($this->{$column}->dataType() == 'Numeric') {
+                $quartile[$column] = $this->{$column}->quartile($Q, $floatPoint);
+            }
+        }
+
+        return $quartile;
+    }
+
+    /**
+     * @param int $floatPoint
+     * @return array
+     * Get list of 2nd Quartile value in DataFrame.
+     */
+    public function median($floatPoint = 2) : array
+    {
+        return $this->quartile(2, $floatPoint);
+    }
+
+    /**
+     * @param int $floatPoint
+     * @return array
+     * Get list of Variance in DataFrame.
+     */
+    public function variance($floatPoint = 4) : array
+    {
+        // Initialize quartile.
+        $variance = [];
+
+        foreach ($this->columns as $column) {
+            if ($this->{$column}->dataType() == 'Numeric') {
+                $variance[$column] = $this->{$column}->variance($floatPoint);
+            }
+        }
+
+        return $variance;
+    }
+
+    /**
+     * @param int $floatPoint
+     * @return array
+     * Get list of Standard Deviation in DataFrame.
+     */
+    public function std($floatPoint = 2) : array
+    {
+        // Initialize quartile.
+        $std = [];
+
+        foreach ($this->columns as $column) {
+            if ($this->{$column}->dataType() == 'Numeric') {
+                $std[$column] = $this->{$column}->std($floatPoint);
+            }
+        }
+
+        return $std;
+    }
+
+    /**
      * @return array
      * Get List of Object in Class.
      */
