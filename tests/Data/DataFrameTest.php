@@ -50,5 +50,29 @@ class DataFrameTest extends TestCase
 
         //Get name within index of 1 - 3
         $this->assertEquals(['bambi','celine','dennise'], $df->name->withinIndexOf(1,3));
+
+        //Get 2nd Quartile of age
+        $this->assertEquals(16, $df->age->quartile(2));
+
+        //Get List of 2nd Quartile
+        $this->assertEquals(['age' => 16, 'height_cm' => 172, 'weight_kg' => 56], $df->quartile(2));
+
+        //Get Median of Age
+        $this->assertEquals(16, $df->age->median());
+
+        //Get List of Median
+        $this->assertEquals(['age' => 16, 'height_cm' => 172, 'weight_kg' => 56], $df->median());
+
+        //Get Variance of Age
+        $this->assertEquals(8, $df->age->variance());
+
+        //Get List of Variance
+        $this->assertEquals(['age' => 8, 'height_cm' => 114.24, 'weight_kg' => 227.2], $df->variance());
+
+        //Get Standard Deviation of Age
+        $this->assertEquals(2.83, $df->age->std());
+
+        //Get List of Standard Deviation
+        $this->assertEquals(['age' => 2.83, 'height_cm' => 10.69, 'weight_kg' => 15.07], $df->std());
     }
 }
