@@ -74,5 +74,19 @@ class DataFrameTest extends TestCase
 
         //Get List of Standard Deviation
         $this->assertEquals(['age' => 2.83, 'height_cm' => 10.69, 'weight_kg' => 15.07], $df->std());
+
+        //Test Transpose data in DataFrame
+
+        $data2 = [
+            ['a' => 1, 'b' => 2, 'c' => 3],
+            ['a' => 4, 'b' => 5, 'c' => 6],
+            ['a' => 7, 'b' => 8, 'c' => 9]
+        ];
+
+        $df2 = new DataFrame();
+
+        $df2->readArray($data2, true);
+
+        $this->assertEquals(['a','b','c'], $df2->getColumns());
     }
 }
