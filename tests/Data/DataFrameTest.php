@@ -78,9 +78,9 @@ class DataFrameTest extends TestCase
         //Test Transpose data in DataFrame
 
         $data2 = [
-            ['a' => 1, 'b' => 2, 'c' => 3],
+            ['a' => 1, 'b' => 2, 'c' => 9],
             ['a' => 4, 'b' => 5, 'c' => 6],
-            ['a' => 7, 'b' => 8, 'c' => 9]
+            ['a' => 7, 'b' => 8, 'c' => 3]
         ];
 
         $df2 = new DataFrame();
@@ -88,5 +88,7 @@ class DataFrameTest extends TestCase
         $df2->readArray($data2, true);
 
         $this->assertEquals(['a','b','c'], $df2->getColumns());
+
+        $this->assertEquals(0.8442, $df->pearsonCorrelation('height_cm','weight_kg'));
     }
 }

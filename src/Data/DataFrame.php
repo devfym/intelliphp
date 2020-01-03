@@ -214,6 +214,34 @@ class DataFrame implements StatisticInterface
     }
 
     /**
+     * @param $xName
+     * @param $yName
+     * @return float
+     * Get Pearson's Correlation Coefficient.
+     */
+    public function pearsonCorrelation($xName, $yName) : float
+    {
+        $N = $this->getIndex();
+        $sum_xy = 0;
+        $sum_x  = 0;
+        $sum_y  = 0;
+        $sum_x2 = 0;
+        $sum_y2 = 0;
+
+        for ($i = 0; $i < $N; $i++) {
+            $sum_xy += $this->{$xName}->get($i) * $this->{$yName}->get($i);
+            $sum_x  += $this->{$xName}->get($i);
+            $sum_y  += $this->{$yName}->get($i);
+            $sum_x2 += pow($this->{$xName}->get($i), 2);
+            $sum_y2 += pow($this->{$yName}->get($i), 2);
+        }
+
+        $r = (($N * $sum_xy) - ($sum_x * $sum_y)) / sqrt((($N * $sum_x2) - pow($sum_x, 2)) * (($N * $sum_y2) - pow($sum_y, 2)));
+
+        return round($r, 4);
+    }
+
+    /**
      * @return array
      * Get List of Object in Class.
      */
