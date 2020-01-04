@@ -28,10 +28,35 @@ class DataFrame implements StatisticInterface
 
     /**
      * @param array $arr
+     * @return array
+     * Transpose array.
+     */
+    public function transpose($arr = []) : array
+    {
+        $columns = array_keys($arr[0]);
+
+        $arr = array_map(null, ...$arr);
+
+        foreach($columns as $index => $column) {
+            $arr[$column] = $arr[$index];
+            unset($arr[$index]);
+        }
+
+        return $arr;
+    }
+
+    /**
+     * @param array $arr
+     * @param bool $transpose
      * Store given array-formatted data into series.
      */
-    public function readArray($arr = []) : void
+    public function readArray($arr = [], $transpose = false) : void
     {
+
+        if ($transpose == true) {
+            $arr = $this->transpose($arr);
+        }
+
         // Set Columns
         $this->columns = array_keys($arr);
 
