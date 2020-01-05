@@ -214,29 +214,33 @@ class DataFrame implements StatisticInterface
     }
 
     /**
-     * @param $xName
-     * @param $yName
+     * @param $xColumn
+     * @param $yColumn
      * @return float
      * Get Pearson's Correlation Coefficient.
      */
-    public function pearsonCorrelation($xName, $yName) : float
+    public function pearsonCorrelation($xColumn, $yColumn) : float
     {
-        $N = $this->getIndex();
-        $sum_xy = 0;
-        $sum_x  = 0;
-        $sum_y  = 0;
-        $sum_x2 = 0;
-        $sum_y2 = 0;
+        $n = $this->getIndex();
 
-        for ($i = 0; $i < $N; $i++) {
-            $sum_xy += $this->{$xName}->get($i) * $this->{$yName}->get($i);
-            $sum_x  += $this->{$xName}->get($i);
-            $sum_y  += $this->{$yName}->get($i);
-            $sum_x2 += pow($this->{$xName}->get($i), 2);
-            $sum_y2 += pow($this->{$yName}->get($i), 2);
+        $x = 0; $y = 0; $xy = 0; $x2 = 0; $y2 = 0;
+
+        for ($i = 0; $i < $n; $i++) {
+
+            $cx = $this->{$xColumn}->get($i);
+            $cy = $this->{$yColumn}->get($i);
+
+            $x += $cx;
+            $y += $cy;
+
+            $xy += $cx * $cy;
+
+            $x2 += $cx * $cx;
+            $y2 += $cy * $cy;
+
         }
 
-        $r = (($N * $sum_xy) - ($sum_x * $sum_y)) / sqrt((($N * $sum_x2) - pow($sum_x, 2)) * (($N * $sum_y2) - pow($sum_y, 2)));
+        $r = (($n * $xy) - ($x * $y)) / sqrt((($n * $x2) - ($x * $x)) * (($n * $y2) - ($y * $y)));
 
         return round($r, 4);
     }
