@@ -277,4 +277,9 @@ class Series implements StatisticInterface, DataManipulationInterface
 
         }
     }
+
+    public function get($index = 0)
+    {
+        return $this->Sample[$index];
+    }
 }
