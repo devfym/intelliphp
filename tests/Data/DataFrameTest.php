@@ -115,7 +115,9 @@ class DataFrameTest extends TestCase
 
         $df4->readArray($data4);
 
-        print_r($df4->kendallCorrelation('student_value'));
+        //print_r($df4->kendallCorrelation('student_value'));
+
+        print_r($df3->fTest('height_cm', 'weight_kg'));
     }
 }
 

@@ -346,6 +346,22 @@ class DataFrame implements StatisticInterface
         return $t;
     }
 
+    public function fTest($xColumn, $yColumn) : float
+    {
+        $f = 0;
+
+        $xVariance = $this->{$xColumn}->variance();
+        $yVariance = $this->{$yColumn}->variance();
+
+        if ($xVariance > $yVariance) {
+            $f = $xVariance / $yVariance;
+        } else {
+            $f = $yVariance / $xVariance;
+        }
+
+        return $f;
+    }
+
     /**
      * @return array
      * Get List of Object in Class.
