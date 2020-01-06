@@ -79,7 +79,7 @@ class DataFrame implements StatisticInterface
         return $this->columns;
     }
 
-    public function getNumericColums() : array {
+    public function getNumericColumns() : array {
 
         $columns = $this->columns;
 
@@ -226,140 +226,6 @@ class DataFrame implements StatisticInterface
         }
 
         return $std;
-    }
-
-    /**
-     * @param $xColumn
-     * @param $yColumn
-     * @return float
-     * Get Pearson's Correlation Coefficient.
-     */
-    public function pearsonCorrelation($xColumn, $yColumn) : float
-    {
-        $n = $this->getIndex();
-
-        $x = 0; $y = 0; $xy = 0; $x2 = 0; $y2 = 0;
-
-        for ($i = 0; $i < $n; $i++) {
-
-            $cx = $this->{$xColumn}->get($i);
-            $cy = $this->{$yColumn}->get($i);
-
-            $x += $cx;
-            $y += $cy;
-
-            $xy += $cx * $cy;
-
-            $x2 += $cx * $cx;
-            $y2 += $cy * $cy;
-
-        }
-
-        $r = (($n * $xy) - ($x * $y)) / sqrt((($n * $x2) - ($x * $x)) * (($n * $y2) - ($y * $y)));
-
-        return round($r, 4);
-    }
-
-    public function spearmanRankCorrelation($xColumn, $yColumn) : float
-    {
-        $xValue = $this->{$xColumn}->all();
-        $yValue = $this->{$yColumn}->all();
-
-        $xSort  = array_unique($xValue);
-        $ySort  = array_unique($yValue);
-
-        rsort($xSort, true);
-        rsort($ySort, true);
-
-        $xRank = [];
-        $yRank = [];
-        $diffRank = 0;
-
-        for ($i = 0; $i < $this->getIndex(); $i++) {
-            $xR = array_keys($xSort, $xValue[$i]);
-            $yR = array_keys($ySort, $yValue[$i]);
-
-            $xRank[$i] = $xR[0] + 1;
-            $yRank[$i] = $yR[0] + 1;
-
-            $diffRank += pow($xRank[$i] - $yRank[$i], 2);
-        }
-
-        $p = 1 - ((6 * $diffRank) / ($this->getIndex() * (($this->getIndex() * $this->getIndex()) - 1)));
-
-        return round($p, 4);
-    }
-
-    public function allPearsonCorrelation() : array
-    {
-        $arr = [];
-
-        $columns = $this->getNumericColums();
-
-        for ($i = 0; $i < count($columns); $i++) {
-            for ($j = 0; $j < count($columns); $j++) {
-                $arr[$i][$j] = $this->pearsonCorrelation($columns[$i], $columns[$j]);
-            }
-        }
-
-        return $arr;
-    }
-
-    public function allSpearmanCorrelation() : array
-    {
-        $arr = [];
-
-        $columns = $this->getNumericColums();
-
-        for ($i = 0; $i < count($columns); $i++) {
-            for ($j = 0; $j < count($columns); $j++) {
-                $arr[$i][$j] = $this->spearmanRankCorrelation($columns[$i], $columns[$j]);
-            }
-        }
-
-        return $arr;
-    }
-
-    public function kendallCorrelation($x) {
-        $concordant = [];
-        $discordant = [];
-
-        for ($i = 0; $i < $this->getIndex(); $i ++) {
-            $concordant_count = 0;
-            $discordant_count = 0;
-            for ($j = $i+1; $j < $this->getIndex(); $j ++) {
-                if ($this->{$x}->get($i) < $this->{$x}->get($j)) {
-                    $concordant_count++;
-                }
-                if ($this->{$x}->get($i) > $this->{$x}->get($j)) {
-                    $discordant_count++;
-                }
-            }
-            $concordant[$i] = $concordant_count;
-            $discordant[$i] = $discordant_count;
-        }
-        $scon = array_sum($concordant);
-        $sdis = array_sum($discordant);
-
-        $t = ($scon - $sdis) / ($this->getIndex() * ($this->getIndex() - 1)  / 2);
-
-        return $t;
-    }
-
-    public function fTest($xColumn, $yColumn) : float
-    {
-        $f = 0;
-
-        $xVariance = $this->{$xColumn}->variance();
-        $yVariance = $this->{$yColumn}->variance();
-
-        if ($xVariance > $yVariance) {
-            $f = $xVariance / $yVariance;
-        } else {
-            $f = $yVariance / $xVariance;
-        }
-
-        return $f;
     }
 
     /**

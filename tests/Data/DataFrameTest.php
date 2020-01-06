@@ -3,6 +3,7 @@
 namespace devfym\Tests\Data;
 
 use devfym\IntelliPHP\Data\DataFrame;
+use devfym\IntelliPHP\Math\Correlation;
 use PHPUnit\Framework\TestCase;
 
 class DataFrameTest extends TestCase
@@ -89,7 +90,7 @@ class DataFrameTest extends TestCase
 
         $this->assertEquals(['a','b','c'], $df2->getColumns());
 
-        $this->assertEquals(0.8442, $df->pearsonCorrelation('height_cm','weight_kg'));
+        $this->assertEquals(0.8442, Correlation::pearsonCorrelation($df, 'height_cm', 'weight_kg'));
 
         $data3 = [
             'height_cm' => [172, 168, 172, 180, 178],
@@ -101,11 +102,8 @@ class DataFrameTest extends TestCase
 
         $df3->readArray($data3);
 
-        $this->assertEquals(-0.4778, $df3->pearsonCorrelation('height_cm', 'weight_kg'));
-        $this->assertEquals(0.05, $df3->spearmanRankCorrelation('height_cm', 'weight_kg'));
-
-        //var_dump($df->allPearsonCorrelation());
-        //var_dump($df3->allSpearmanCorrelation());
+        $this->assertEquals(-0.4778, Correlation::pearsonCorrelation($df3, 'height_cm', 'weight_kg'));
+        $this->assertEquals(0.05, Correlation::spearmanRankCorrelation($df3, 'height_cm', 'weight_kg'));
 
         $data4 = [
             'student_value' => [1, 4, 3, 5, 2]
@@ -115,9 +113,9 @@ class DataFrameTest extends TestCase
 
         $df4->readArray($data4);
 
-        //print_r($df4->kendallCorrelation('student_value'));
+        $this->assertEquals(0.2, Correlation::kendallCorrelation($df4, 'student_value'));
 
-        print_r($df3->fTest('height_cm', 'weight_kg'));
+        $this->assertEquals(12.7833, Correlation::fTest($df3, 'height_cm', 'weight_kg'));
     }
 }
 
