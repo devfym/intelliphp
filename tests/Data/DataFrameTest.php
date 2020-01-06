@@ -90,5 +90,17 @@ class DataFrameTest extends TestCase
         $this->assertEquals(['a','b','c'], $df2->getColumns());
 
         $this->assertEquals(0.8442, $df->pearsonCorrelation('height_cm','weight_kg'));
+
+        $data3 = [
+            'height_cm' => [172, 168, 172, 180, 178],
+            'weight_kg' => [78, 56, 36, 36, 46]
+        ];
+
+        $df3 = new DataFrame();
+
+        $df3->readArray($data3);
+
+        $this->assertEquals(-0.4778, $df3->pearsonCorrelation('height_cm', 'weight_kg'));
+        $this->assertEquals(0.05, $df3->spearmanRankCorrelation('height_cm', 'weight_kg'));
     }
 }
