@@ -245,6 +245,36 @@ class DataFrame implements StatisticInterface
         return round($r, 4);
     }
 
+    public function spearmanRankCorrelation($xColumn, $yColumn) : float
+    {
+        $xValue = $this->{$xColumn}->all();
+        $yValue = $this->{$yColumn}->all();
+
+        $xSort  = array_unique($xValue);
+        $ySort  = array_unique($yValue);
+
+        rsort($xSort, true);
+        rsort($ySort, true);
+
+        $xRank = [];
+        $yRank = [];
+        $diffRank = 0;
+
+        for ($i = 0; $i < $this->getIndex(); $i++) {
+            $xR = array_keys($xSort, $xValue[$i]);
+            $yR = array_keys($ySort, $yValue[$i]);
+
+            $xRank[$i] = $xR[0] + 1;
+            $yRank[$i] = $yR[0] + 1;
+
+            $diffRank += pow($xRank[$i] - $yRank[$i], 2);
+        }
+
+        $p = 1 - ((6 * $diffRank) / ($this->getIndex() * (($this->getIndex() * $this->getIndex()) - 1)));
+
+        return round($p, 4);
+    }
+
     /**
      * @return array
      * Get List of Object in Class.
