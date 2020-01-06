@@ -93,7 +93,8 @@ class DataFrameTest extends TestCase
 
         $data3 = [
             'height_cm' => [172, 168, 172, 180, 178],
-            'weight_kg' => [78, 56, 36, 36, 46]
+            'weight_kg' => [78, 56, 36, 36, 46],
+            'age'       => [14.5, 12.2, 15, 14, 12.2]
         ];
 
         $df3 = new DataFrame();
@@ -102,5 +103,21 @@ class DataFrameTest extends TestCase
 
         $this->assertEquals(-0.4778, $df3->pearsonCorrelation('height_cm', 'weight_kg'));
         $this->assertEquals(0.05, $df3->spearmanRankCorrelation('height_cm', 'weight_kg'));
+
+        //var_dump($df->allPearsonCorrelation());
+        //var_dump($df3->allSpearmanCorrelation());
+
+        $data4 = [
+            'student_value' => [1, 4, 3, 5, 2]
+        ];
+
+        $df4 = new DataFrame();
+
+        $df4->readArray($data4);
+
+        //print_r($df4->kendallCorrelation('student_value'));
+
+        print_r($df3->fTest('height_cm', 'weight_kg'));
     }
 }
+
