@@ -79,6 +79,21 @@ class DataFrame implements StatisticInterface
         return $this->columns;
     }
 
+    public function getNumericColums() : array {
+
+        $columns = $this->columns;
+
+        $numeric = [];
+
+        foreach($columns as $col) {
+            if ($this->{$col}->dataType() == 'Numeric') {
+                array_push($numeric, $col);
+            }
+        }
+
+        return $numeric;
+    }
+
     /**
      * @return int
      * Get Number of Sample.
@@ -273,6 +288,62 @@ class DataFrame implements StatisticInterface
         $p = 1 - ((6 * $diffRank) / ($this->getIndex() * (($this->getIndex() * $this->getIndex()) - 1)));
 
         return round($p, 4);
+    }
+
+    public function allPearsonCorrelation() : array
+    {
+        $arr = [];
+
+        $columns = $this->getNumericColums();
+
+        for ($i = 0; $i < count($columns); $i++) {
+            for ($j = 0; $j < count($columns); $j++) {
+                $arr[$i][$j] = $this->pearsonCorrelation($columns[$i], $columns[$j]);
+            }
+        }
+
+        return $arr;
+    }
+
+    public function allSpearmanCorrelation() : array
+    {
+        $arr = [];
+
+        $columns = $this->getNumericColums();
+
+        for ($i = 0; $i < count($columns); $i++) {
+            for ($j = 0; $j < count($columns); $j++) {
+                $arr[$i][$j] = $this->spearmanRankCorrelation($columns[$i], $columns[$j]);
+            }
+        }
+
+        return $arr;
+    }
+
+    public function kendallCorrelation($x) {
+        $concordant = [];
+        $discordant = [];
+
+        for ($i = 0; $i < $this->getIndex(); $i ++) {
+            $concordant_count = 0;
+            $discordant_count = 0;
+            for ($j = $i+1; $j < $this->getIndex(); $j ++) {
+                if ($this->{$x}->get($i) < $this->{$x}->get($j)) {
+                    $concordant_count++;
+                }
+                if ($this->{$x}->get($i) > $this->{$x}->get($j)) {
+                    $discordant_count++;
+                }
+            }
+            $concordant[$i] = $concordant_count;
+            $discordant[$i] = $discordant_count;
+        }
+        $scon = array_sum($concordant);
+        $sdis = array_sum($discordant);
+
+        $t = ($scon - $sdis) / ($this->getIndex() * ($this->getIndex() - 1)  / 2);
+
+        return $t;
     }
 
     /**
