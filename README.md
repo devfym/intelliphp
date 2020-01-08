@@ -3,7 +3,6 @@
 [![Latest Stable Version](https://poser.pugx.org/devfym/intelliphp/v/stable)](https://packagist.org/packages/devfym/intelliphp)
 [![Latest Unstable Version](https://poser.pugx.org/devfym/intelliphp/v/unstable)](https://packagist.org/packages/devfym/intelliphp)
 [![Build Status](https://travis-ci.com/devfym/intelliphp.svg?branch=master)](https://travis-ci.com/devfym/intelliphp)
-[![CircleCI](https://circleci.com/gh/devfym/intelliphp/tree/master.svg?style=svg)](https://circleci.com/gh/devfym/intelliphp/tree/master)
 [![Documentation Status](https://readthedocs.org/projects/intelliphp/badge/?version=latest)](https://intelliphp.readthedocs.io/en/latest/?badge=latest)
 [![Total Downloads](https://poser.pugx.org/devfym/intelliphp/downloads)](https://packagist.org/packages/devfym/intelliphp)
 [![License](https://poser.pugx.org/devfym/intelliphp/license)](https://packagist.org/packages/devfym/intelliphp)
@@ -25,6 +24,18 @@ No stable version yet, so please install dev-master.
 - Data
     - [DataFrame](docs/Data/DataFrame.md)
     - [Series](docs/Data/Series.md)
+- Math (method in DataFrame / Series)
+    - Min, Max, Mean, Median
+    - Standard Deviation
+    - Variance
+    - Quartile
+- Statistic
+    - Correlation
+        - Pearson Correlation
+        - Spearman Rank Correlation
+        - Kendall Rank Correlation
+    - Differences
+        - F Test
 - Regression
     - [Linear Regression](docs/Regression/LinearRegression.md)
  
@@ -95,3 +106,7 @@ $linear->predict(7);
 
 // it will return a value of 6.
 ```
+
+## License
+
+[MIT](LICENSE)
