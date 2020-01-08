@@ -1,17 +1,22 @@
-# .travis.yml
-dist: precise
-
 language: php
 
 php:
   - 7.2
+  - 7.3
+  - 7.4
+
 cache:
   directories:
-    - vendor
+    - ./vendor
+    - $HOME/.composer/cache
 
 before_script:
   - composer self-update
   - composer install --no-interaction
+  - mkdir -p build/logs
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+  - travis_retry php vendor/bin/php-coveralls -v
