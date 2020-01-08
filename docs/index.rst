@@ -2,7 +2,7 @@ IntelliPHP
 ==========
 
 |PHP from Packagist| |Latest Stable Version| |Latest Unstable Version|
-|Build Status| |CircleCI| |Documentation Status| |Total Downloads|
+|Build Status| |Coverage Status| |Documentation Status| |Total Downloads|
 |License|
 
 Composer Library for Machine Learning.
@@ -127,8 +127,8 @@ Linear Regression
    :target: https://packagist.org/packages/devfym/intelliphp
 .. |Build Status| image:: https://travis-ci.com/devfym/intelliphp.svg?branch=master
    :target: https://travis-ci.com/devfym/intelliphp
-.. |CircleCI| image:: https://circleci.com/gh/devfym/intelliphp/tree/master.svg?style=svg
-   :target: https://circleci.com/gh/devfym/intelliphp/tree/master
+.. |Coverage Status| image:: https://coveralls.io/repos/github/devfym/intelliphp/badge.svg?branch=master
+   :target: https://coveralls.io/github/devfym/intelliphp?branch=master
 .. |Documentation Status| image:: https://readthedocs.org/projects/intelliphp/badge/?version=latest
    :target: https://intelliphp.readthedocs.io/en/latest/?badge=latest
 .. |Total Downloads| image:: https://poser.pugx.org/devfym/intelliphp/downloads
