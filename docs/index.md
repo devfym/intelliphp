@@ -3,7 +3,6 @@
 [![Latest Stable Version](https://poser.pugx.org/devfym/intelliphp/v/stable)](https://packagist.org/packages/devfym/intelliphp)
 [![Latest Unstable Version](https://poser.pugx.org/devfym/intelliphp/v/unstable)](https://packagist.org/packages/devfym/intelliphp)
 [![Build Status](https://travis-ci.com/devfym/intelliphp.svg?branch=master)](https://travis-ci.com/devfym/intelliphp)
-[![CircleCI](https://circleci.com/gh/devfym/intelliphp/tree/master.svg?style=svg)](https://circleci.com/gh/devfym/intelliphp/tree/master)
 [![Documentation Status](https://readthedocs.org/projects/intelliphp/badge/?version=latest)](https://intelliphp.readthedocs.io/en/latest/?badge=latest)
 [![Total Downloads](https://poser.pugx.org/devfym/intelliphp/downloads)](https://packagist.org/packages/devfym/intelliphp)
 [![License](https://poser.pugx.org/devfym/intelliphp/license)](https://packagist.org/packages/devfym/intelliphp)
@@ -25,6 +24,18 @@ No stable version yet, so please install dev-master.
 - Data
     - [DataFrame](Data/DataFrame.md)
     - [Series](Data/Series.md)
+- Math (method in DataFrame / Series)
+    - Min, Max, Mean, Median
+    - Standard Deviation
+    - Variance
+    - Quartile
+- Statistic
+    - Correlation
+        - Pearson Correlation
+        - Spearman Rank Correlation
+        - Kendall Rank Correlation
+    - Differences
+        - F Test
 - Regression
     - [Linear Regression](Regression/LinearRegression.md)
 
@@ -95,3 +106,28 @@ $linear->predict(7);
 
 // it will return a value of 6.
 ```
+
+## License
+
+MIT License
+
+Copyright (c) 2020 IntelliPHP
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
