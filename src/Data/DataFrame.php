@@ -227,13 +227,4 @@ class DataFrame implements StatisticInterface
 
         return $std;
     }
-
-    /**
-     * @return array
-     * Get List of Object in Class.
-     */
-    public function getObjectVariables() : array
-    {
-        return get_object_vars($this);
-    }
 }

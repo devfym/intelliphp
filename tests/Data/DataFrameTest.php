@@ -25,6 +25,9 @@ class DataFrameTest extends TestCase
         //カラム名だけ取得
         $this->assertEquals(['name', 'age', 'height_cm', 'weight_kg'], $df->getColumns());
 
+        //Numericカラム名だけ取得
+        $this->assertEquals(['age', 'height_cm', 'weight_kg'], $df->getNumericColumns());
+
         //データのindexを取得
         $this->assertEquals(5, $df->getIndex());
 
