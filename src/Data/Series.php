@@ -72,25 +72,17 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function isNumeric() : string
     {
-        try {
+        $DataType = 'Numeric';
 
-            $DataType = 'Numeric';
-
-            foreach ($this->Sample as $s) {
-                if (!is_numeric($s)) {
-                    if (!is_null($s)) {
-                        $DataType = 'Object';
-                    }
+        foreach ($this->Sample as $s) {
+            if (!is_numeric($s)) {
+                if (!is_null($s)) {
+                    $DataType = 'Object';
                 }
             }
-
-            return $DataType;
-
-        } catch (\Throwable $e) {
-
-            throw new $e();
-
         }
+
+        return $DataType;
     }
 
     /**
@@ -109,15 +101,7 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function mean($floatPoint = 2) : float
     {
-        try {
-
-            return round(array_sum($this->Sample) / ($this->SampleCount - $this->null_counter), $floatPoint);
-
-        } catch (\Throwable $e) {
-
-            throw new $e();
-
-        }
+        return round(array_sum($this->Sample) / ($this->SampleCount - $this->null_counter), $floatPoint);
     }
 
     /**
@@ -127,24 +111,16 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function max($floatPoint = 2) : float
     {
-        try {
+       // Initialize max value with 1st index of $Sample.
+        $max = $this->Sample[0];
 
-            // Initialize max value with 1st index of $Sample.
-            $max = $this->Sample[0];
-
-            for ($i = 1; $i < $this->SampleCount; $i++) {
-                if ($this->Sample[$i] > $max && !is_null($this->Sample[$i])) {
-                    $max = $this->Sample[$i];
-                }
+        for ($i = 1; $i < $this->SampleCount; $i++) {
+            if ($this->Sample[$i] > $max && !is_null($this->Sample[$i])) {
+                $max = $this->Sample[$i];
             }
-
-            return round($max, $floatPoint);
-
-        } catch (\Throwable $e) {
-
-            throw new $e();
-
         }
+
+        return round($max, $floatPoint);
     }
 
     /**
@@ -154,24 +130,16 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function min($floatPoint = 2) : float
     {
-        try {
+        //Initialize min value with 1st index of $Sample.
+        $min = $this->Sample[0];
 
-            //Initialize min value with 1st index of $Sample.
-            $min = $this->Sample[0];
-
-            for ($i = 1; $i < $this->SampleCount; $i++) {
-                if ($this->Sample[$i] < $min && !is_null($this->Sample[$i])) {
-                    $min = $this->Sample[$i];
-                }
+        for ($i = 1; $i < $this->SampleCount; $i++) {
+            if ($this->Sample[$i] < $min && !is_null($this->Sample[$i])) {
+                $min = $this->Sample[$i];
             }
-
-            return round($min, $floatPoint);
-
-        } catch (\Throwable $e) {
-
-            throw new $e();
-
         }
+
+        return round($min, $floatPoint);
     }
 
     /**
@@ -186,24 +154,16 @@ class Series implements StatisticInterface, DataManipulationInterface
             return 0;
         }
 
-        try {
+        //Sort Data into ascending order.
+        $sorted_sample = $this->Sample;
 
-            //Sort Data into ascending order.
-            $sorted_sample = $this->Sample;
+        $sorted_sample = array_filter($sorted_sample);
 
-            $sorted_sample = array_filter($sorted_sample);
+        sort($sorted_sample);
 
-            sort($sorted_sample);
+        $quartile = ($Q / 4) * ((count($this->Sample) - $this->null_counter) + 1);
 
-            $quartile = ($Q / 4) * ((count($this->Sample) - $this->null_counter) + 1);
-
-            return $sorted_sample[$quartile - 1];
-
-        } catch (\Throwable $e) {
-
-            throw new $e();
-
-        }
+        return $sorted_sample[$quartile - 1];
     }
 
     /**
@@ -213,15 +173,7 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function median($floatPoint = 2) : float
     {
-        try {
-
-            return $this->quartile(2, $floatPoint);
-
-        } catch (\Throwable $e) {
-
-            throw new $e();
-
-        }
+       return $this->quartile(2, $floatPoint);
     }
 
     /**
@@ -235,27 +187,19 @@ class Series implements StatisticInterface, DataManipulationInterface
             return 0;
         }
 
-        try {
+        $mean = $this->mean(4);
 
-            $mean = $this->mean(4);
-            $total_s = 0;
+        $total_s = 0;
 
-            foreach($this->Sample as $s) {
-                if (!is_null($s)) {
-                    $total_s += pow(($s - $mean), 2);
-                }
+        foreach($this->Sample as $s) {
+            if (!is_null($s)) {
+                $total_s += pow(($s - $mean), 2);
             }
-
-            $variance = $total_s / (count($this->Sample) - $this->null_counter);
-
-            return round($variance, $floatPoint);
-
-
-        } catch (\Throwable $e) {
-
-            throw new $e;
-
         }
+
+        $variance = $total_s / (count($this->Sample) - $this->null_counter);
+
+        return round($variance, $floatPoint);
     }
 
     /**
@@ -265,17 +209,9 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function std($floatPoint = 2) : float
     {
-        try {
+        $std = sqrt($this->variance());
 
-            $std = sqrt($this->variance());
-
-            return round($std, $floatPoint);
-
-        } catch (\Throwable $e) {
-
-            throw new $e();
-
-        }
+        return round($std, $floatPoint);
     }
 
     /**
@@ -295,22 +231,14 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function withinIndexOf($from = 0, $to = 1) : array
     {
-        try {
+        // Initialize sample.
+        $Sample = [];
 
-            // Initialize sample.
-            $Sample = [];
-
-            for ($i = $from; $i <= $to; $i++) {
-                $Sample[] = $this->Sample[$i];
-            }
-
-            return $Sample;
-
-        } catch (\Throwable $e) {
-
-            throw new $e();
-
+        for ($i = $from; $i <= $to; $i++) {
+            $Sample[] = $this->Sample[$i];
         }
+
+        return $Sample;
     }
 
     public function get($index = 0)
