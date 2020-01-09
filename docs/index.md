@@ -16,9 +16,7 @@ Currently it requires PHP Version >= 7.2
 
 ## How to install package
 
-No stable version yet, so please install dev-master.
-
-```composer require devfym/intelliphp:dev-master```
+```composer require devfym/intelliphp```
 
 ## Features
 
