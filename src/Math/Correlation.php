@@ -52,8 +52,8 @@ class Correlation
         $xSort  = array_unique($xValue);
         $ySort  = array_unique($yValue);
 
-        rsort($xSort, true);
-        rsort($ySort, true);
+        rsort($xSort);
+        rsort($ySort);
 
         $xRank = [];
         $yRank = [];
@@ -86,9 +86,11 @@ class Correlation
 
         $columns = $df->getNumericColumns();
 
-        for ($i = 0; $i < count($columns); $i++) {
+        $numeric_count = count($columns);
 
-            for ($j = 0; $j < count($columns); $j++) {
+        for ($i = 0; $i < $numeric_count; $i++) {
+
+            for ($j = 0; $j < $numeric_count; $j++) {
 
                 $arr[$i][$j] = self::pearsonCorrelation($df, $columns[$i], $columns[$j]);
 
@@ -109,9 +111,11 @@ class Correlation
 
         $columns = $df->getNumericColumns();
 
-        for ($i = 0; $i < count($columns); $i++) {
+        $numeric_count = count($columns);
 
-            for ($j = 0; $j < count($columns); $j++) {
+        for ($i = 0; $i < $numeric_count; $i++) {
+
+            for ($j = 0; $j < $numeric_count; $j++) {
 
                 $arr[$i][$j] = self::spearmanRankCorrelation($df, $columns[$i], $columns[$j]);
 
@@ -133,12 +137,12 @@ class Correlation
         $concordant = [];
         $discordant = [];
 
-        for ($i = 0; $i < $df->getIndex(); $i ++) {
+        for ($i = 0; $i < $df->getIndex(); $i++) {
 
             $concordant_count = 0;
             $discordant_count = 0;
 
-            for ($j = $i+1; $j < $df->getIndex(); $j ++) {
+            for ($j = $i+1; $j < $df->getIndex(); $j++) {
 
                 if ($df->{$xColumn}->get($i) < $df->{$xColumn}->get($j)) {
 
@@ -161,7 +165,7 @@ class Correlation
         $scon = array_sum($concordant);
         $sdis = array_sum($discordant);
 
-        $t = ($scon - $sdis) / ($df->getIndex() * ($df->getIndex() - 1)  / 2);
+        $t = ($scon - $sdis) / ($df->getIndex() * ($df->getIndex() - 1) / 2);
 
         return round($t, 4);
     }

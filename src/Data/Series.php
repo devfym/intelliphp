@@ -111,7 +111,7 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function max($floatPoint = 2) : float
     {
-       // Initialize max value with 1st index of $Sample.
+        // Initialize max value with 1st index of $Sample.
         $max = $this->Sample[0];
 
         for ($i = 1; $i < $this->SampleCount; $i++) {
@@ -173,7 +173,7 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function median($floatPoint = 2) : float
     {
-       return $this->quartile(2, $floatPoint);
+        return $this->quartile(2, $floatPoint);
     }
 
     /**
@@ -191,7 +191,7 @@ class Series implements StatisticInterface, DataManipulationInterface
 
         $total_s = 0;
 
-        foreach($this->Sample as $s) {
+        foreach ($this->Sample as $s) {
             if (!is_null($s)) {
                 $total_s += pow(($s - $mean), 2);
             }
