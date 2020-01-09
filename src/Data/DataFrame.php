@@ -37,7 +37,7 @@ class DataFrame implements StatisticInterface
 
         $arr = array_map(null, ...$arr);
 
-        foreach($columns as $index => $column) {
+        foreach ($columns as $index => $column) {
             $arr[$column] = $arr[$index];
             unset($arr[$index]);
         }
@@ -53,7 +53,7 @@ class DataFrame implements StatisticInterface
     public function readArray($arr = [], $transpose = false) : void
     {
 
-        if ($transpose == true) {
+        if ($transpose === true) {
             $arr = $this->transpose($arr);
         }
 
@@ -85,7 +85,7 @@ class DataFrame implements StatisticInterface
 
         $numeric = [];
 
-        foreach($columns as $col) {
+        foreach ($columns as $col) {
             if ($this->{$col}->dataType() == 'Numeric') {
                 array_push($numeric, $col);
             }
