@@ -1,7 +1,7 @@
 IntelliPHP
 ==========
 
-|PHP from Packagist| |Latest Stable Version| |Latest Unstable Version|
+|PHP from Packagist| |Latest Stable Version|
 |Build Status| |Coverage Status| |Documentation Status| |Total Downloads|
 |License|
 
@@ -120,8 +120,6 @@ Linear Regression
 
 .. |PHP from Packagist| image:: https://img.shields.io/packagist/php-v/devfym/intelliphp
 .. |Latest Stable Version| image:: https://poser.pugx.org/devfym/intelliphp/v/stable
-   :target: https://packagist.org/packages/devfym/intelliphp
-.. |Latest Unstable Version| image:: https://poser.pugx.org/devfym/intelliphp/v/unstable
    :target: https://packagist.org/packages/devfym/intelliphp
 .. |Build Status| image:: https://travis-ci.com/devfym/intelliphp.svg?branch=master
    :target: https://travis-ci.com/devfym/intelliphp

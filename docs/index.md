@@ -1,7 +1,6 @@
 # IntelliPHP
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/devfym/intelliphp)
 [![Latest Stable Version](https://poser.pugx.org/devfym/intelliphp/v/stable)](https://packagist.org/packages/devfym/intelliphp)
-[![Latest Unstable Version](https://poser.pugx.org/devfym/intelliphp/v/unstable)](https://packagist.org/packages/devfym/intelliphp)
 [![Build Status](https://travis-ci.com/devfym/intelliphp.svg?branch=master)](https://travis-ci.com/devfym/intelliphp)
 [![Coverage Status](https://coveralls.io/repos/github/devfym/intelliphp/badge.svg?branch=master)](https://coveralls.io/github/devfym/intelliphp?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/intelliphp/badge/?version=latest)](https://intelliphp.readthedocs.io/en/latest/?badge=latest)
