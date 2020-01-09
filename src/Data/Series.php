@@ -25,6 +25,12 @@ class Series implements StatisticInterface, DataManipulationInterface
     protected $DataType = 'Object';
 
     /**
+     * @var int
+     * Count number of NULL values in data.
+     */
+    protected $null_counter = 0;
+
+    /**
      * BasicStatistics constructor.
      */
     public function __construct()
@@ -42,7 +48,22 @@ class Series implements StatisticInterface, DataManipulationInterface
 
         $this->SampleCount = count($Sample);
 
+        $this->null_counter = $this->nullCount();
+
         $this->DataType = $this->isNumeric();
+    }
+
+    public function nullCount() : int
+    {
+        $nullCount = 0;
+
+        foreach ($this->Sample as $s) {
+            if (is_null($s)) {
+                $nullCount++;
+            }
+        }
+
+        return $nullCount;
     }
 
     /**
@@ -57,7 +78,9 @@ class Series implements StatisticInterface, DataManipulationInterface
 
             foreach ($this->Sample as $s) {
                 if (!is_numeric($s)) {
-                    $DataType = 'Object';
+                    if (!is_null($s)) {
+                        $DataType = 'Object';
+                    }
                 }
             }
 
@@ -88,7 +111,7 @@ class Series implements StatisticInterface, DataManipulationInterface
     {
         try {
 
-            return round(array_sum($this->Sample) / $this->SampleCount, $floatPoint);
+            return round(array_sum($this->Sample) / ($this->SampleCount - $this->null_counter), $floatPoint);
 
         } catch (\Throwable $e) {
 
@@ -110,7 +133,7 @@ class Series implements StatisticInterface, DataManipulationInterface
             $max = $this->Sample[0];
 
             for ($i = 1; $i < $this->SampleCount; $i++) {
-                if ($this->Sample[$i] > $max) {
+                if ($this->Sample[$i] > $max && !is_null($this->Sample[$i])) {
                     $max = $this->Sample[$i];
                 }
             }
@@ -137,7 +160,7 @@ class Series implements StatisticInterface, DataManipulationInterface
             $min = $this->Sample[0];
 
             for ($i = 1; $i < $this->SampleCount; $i++) {
-                if ($this->Sample[$i] < $min) {
+                if ($this->Sample[$i] < $min && !is_null($this->Sample[$i])) {
                     $min = $this->Sample[$i];
                 }
             }
@@ -159,14 +182,20 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function quartile($Q = 1, $floatPoint = 2) : float
     {
+        if ($this->dataType() == 'Object') {
+            return 0;
+        }
+
         try {
 
             //Sort Data into ascending order.
             $sorted_sample = $this->Sample;
 
+            $sorted_sample = array_filter($sorted_sample);
+
             sort($sorted_sample);
 
-            $quartile = ($Q / 4) * (count($this->Sample) + 1);
+            $quartile = ($Q / 4) * ((count($this->Sample) - $this->null_counter) + 1);
 
             return $sorted_sample[$quartile - 1];
 
@@ -202,16 +231,22 @@ class Series implements StatisticInterface, DataManipulationInterface
      */
     public function variance($floatPoint = 4) : float
     {
+        if ($this->dataType() == 'Object') {
+            return 0;
+        }
+
         try {
 
             $mean = $this->mean(4);
             $total_s = 0;
 
             foreach($this->Sample as $s) {
-                $total_s += pow(($s - $mean), 2);
+                if (!is_null($s)) {
+                    $total_s += pow(($s - $mean), 2);
+                }
             }
 
-            $variance = $total_s / count($this->Sample);
+            $variance = $total_s / (count($this->Sample) - $this->null_counter);
 
             return round($variance, $floatPoint);
 
