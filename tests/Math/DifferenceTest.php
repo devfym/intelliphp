@@ -40,6 +40,8 @@ class DifferenceTest extends  TestCase
     public function testFTest()
     {
         $this->assertEquals( 0.6667, Difference::FTest($this->df,'height_cm', 'weight_kg'));
+
+        $this->assertEquals( 0.6667, Difference::FTest($this->df,'weight_kg', 'height_cm'));
     }
 
 
