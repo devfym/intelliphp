@@ -13,6 +13,10 @@
         <directory suffix="Test.php">./tests/Data</directory>
     </testsuite>
 
+    <testsuite name="Math">
+        <directory suffix="Test.php">./tests/Math</directory>
+    </testsuite>
+
     <testsuite name="Regression">
         <directory suffix="Test.php">./tests/Regression</directory>
     </testsuite>

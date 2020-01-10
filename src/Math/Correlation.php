@@ -13,7 +13,7 @@ class Correlation
      * @return float
      * Get Pearson's Correlation Coefficient.
      */
-    public static function pearsonCorrelation(DataFrame $df, $xColumn, $yColumn) : float
+    public static function pearson(DataFrame $df, $xColumn, $yColumn) : float
     {
         $n = $df->getIndex();
         $x = 0; $y = 0; $xy = 0; $x2 = 0; $y2 = 0;
@@ -44,7 +44,7 @@ class Correlation
      * @param $yColumn
      * @return float
      */
-    public static function spearmanRankCorrelation(DataFrame $df, $xColumn, $yColumn) : float
+    public static function spearman(DataFrame $df, $xColumn, $yColumn) : float
     {
         $xValue = $df->{$xColumn}->all();
         $yValue = $df->{$yColumn}->all();
@@ -78,60 +78,10 @@ class Correlation
 
     /**
      * @param DataFrame $df
-     * @return array
-     */
-    public static function allPearsonCorrelation(DataFrame $df) : array
-    {
-        $arr = [];
-
-        $columns = $df->getNumericColumns();
-
-        $numeric_count = count($columns);
-
-        for ($i = 0; $i < $numeric_count; $i++) {
-
-            for ($j = 0; $j < $numeric_count; $j++) {
-
-                $arr[$i][$j] = self::pearsonCorrelation($df, $columns[$i], $columns[$j]);
-
-            }
-
-        }
-
-        return $arr;
-    }
-
-    /**
-     * @param DataFrame $df
-     * @return array
-     */
-    public static function allSpearmanCorrelation(DataFrame $df) : array
-    {
-        $arr = [];
-
-        $columns = $df->getNumericColumns();
-
-        $numeric_count = count($columns);
-
-        for ($i = 0; $i < $numeric_count; $i++) {
-
-            for ($j = 0; $j < $numeric_count; $j++) {
-
-                $arr[$i][$j] = self::spearmanRankCorrelation($df, $columns[$i], $columns[$j]);
-
-            }
-
-        }
-
-        return $arr;
-    }
-
-    /**
-     * @param DataFrame $df
      * @param $xColumn
      * @return float
      */
-    public static function kendallCorrelation(DataFrame $df, $xColumn) : float
+    public static function kendall(DataFrame $df, $xColumn) : float
     {
 
         $concordant = [];
@@ -142,7 +92,7 @@ class Correlation
             $concordant_count = 0;
             $discordant_count = 0;
 
-            for ($j = $i+1; $j < $df->getIndex(); $j++) {
+            for ($j = $i + 1; $j < $df->getIndex(); $j++) {
 
                 if ($df->{$xColumn}->get($i) < $df->{$xColumn}->get($j)) {
 
@@ -171,24 +121,52 @@ class Correlation
     }
 
     /**
-     * @param $df
-     * @param $xColumn
-     * @param $yColumn
-     * @return float
+     * @param DataFrame $df
+     * @return array
      */
-    public static function fTest(DataFrame $df, $xColumn, $yColumn) : float
+    public static function pearsonAll(DataFrame $df) : array
     {
-        $f = 0;
+        $arr = [];
 
-        $xVariance = $df->{$xColumn}->variance();
-        $yVariance = $df->{$yColumn}->variance();
+        $columns = $df->getNumericColumns();
 
-        if ($xVariance > $yVariance) {
-            $f = $xVariance / $yVariance;
-        } else {
-            $f = $yVariance / $xVariance;
+        $numeric_count = count($columns);
+
+        for ($i = 0; $i < $numeric_count; $i++) {
+
+            for ($j = 0; $j < $numeric_count; $j++) {
+
+                $arr[$i][$j] = self::pearson($df, $columns[$i], $columns[$j]);
+
+            }
+
         }
 
-        return round($f, 4);
+        return $arr;
+    }
+
+    /**
+     * @param DataFrame $df
+     * @return array
+     */
+    public static function spearmanAll(DataFrame $df) : array
+    {
+        $arr = [];
+
+        $columns = $df->getNumericColumns();
+
+        $numeric_count = count($columns);
+
+        for ($i = 0; $i < $numeric_count; $i++) {
+
+            for ($j = 0; $j < $numeric_count; $j++) {
+
+                $arr[$i][$j] = self::spearman($df, $columns[$i], $columns[$j]);
+
+            }
+
+        }
+
+        return $arr;
     }
 }
