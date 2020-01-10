@@ -13,7 +13,7 @@ class SeriesTest extends TestCase
      */
     protected $data = [
         'name'      => ['aaron', 'bambi', 'celine', 'dennise', 'edwin'],
-        'height_cm' => [150, 168, 172, 178, 180],
+        'height_cm' => [168, 150, 172, 178, 180],
         'weight_kg' => [36, NULL, 56, 60, 78],
         'location'  => ['makati', 'manila', NULL, 'pasay', 'pasig']
     ];
@@ -61,7 +61,7 @@ class SeriesTest extends TestCase
         $this->assertEquals($this->data['height_cm'], $series->all());
 
         // Return data within indices.
-        $this->assertEquals([168, 172, 178], $series->withinIndexOf(1, 3));
+        $this->assertEquals([150, 172, 178], $series->withinIndexOf(1, 3));
 
         // Return single data in Series.
         $this->assertEquals(172, $series->get(2));
