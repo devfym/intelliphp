@@ -2,48 +2,84 @@
 
 namespace devfym\Tests\Regression;
 
+use devfym\IntelliPHP\Data\DataFrame;
 use devfym\IntelliPHP\Regression\LinearRegression;
 use PHPUnit\Framework\TestCase;
+use SebastianBergmann\Diff\Line;
 
 class LinearRegressionTest extends TestCase
 {
+    /**
+     * Sample Data
+     */
+    protected $data = [
+        'student_id' => [1, 2, 3, 4, 5],
+        'name'       => ['aaron', 'bambi', 'celine', 'dennise', 'edwin'],
+        'age'       => [14.5, 12.2, 15, 14, 12.2],
+        'height_cm' => [162, 158, 162, 170, 168],
+        'weight_kg' => [68, 58, 56, 56, 52],
+        'gpa'       => [1.25, 4.0, 2.75, 4.0, 2.25]
+    ];
+
+    /**
+     * @var DataFrame
+     */
+    protected $df;
+
+    /**
+     * @var string
+     */
+    protected $model;
+
+    /**
+     * LinearRegressionTest constructor.
+     * @param null|string $name
+     * @param array $data
+     * @param string $dataName
+     */
+    public function __construct(?string $name = null, array $data = [], string $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+
+        $this->df = new DataFrame();
+
+        $this->df->readArray($this->data);
+    }
+
     public function testExample() : void
     {
         $linear = new LinearRegression();
 
-        srand(2019);
+        $linear->setTrain($this->df);
 
-        $x_train = [];
-        $y_train = [];
+        $linear->model('height_cm', 'weight_kg', 'mean_squared_error');
 
-        for ($i = 0; $i < 1000000; $i++) {
-            $random_value = round(rand(0, 1000000) / rand(1, 10), 4);
-            $x_train[$i] = $random_value;
-            $y_train[$i] = round($random_value + (rand(1, 10) * rand(1, 5)), 4);
-        }
+        $y_test = $linear->predict($this->data['height_cm']);
 
-        $linear->setTrain($x_train, $y_train);
-        $linear->model();
+        $this->assertEquals(-0.002, $linear->validate($this->data['weight_kg'], $y_test));
 
-        // Test Slope
-        $this->assertEquals(1.0001, $linear->getSlope());
+        $linear->saveModel();
+        /*
+         * @return string
+         * "type":"LinearRegression","xColumn":"height_cm","yColumn":"weight_kg","slope":0.35365853658536583,"intercept":0,"metric":"mean_squared_error"
+         *
+         */
 
-        // Test Intercept
-        $this->assertEquals(0, $linear->getIntercept());
-
-        // Test Error Rate
-        for ($n = 0; $n < 100; $n++) {
-            $y_predict = $linear->predict($x_train[$n]);
-            $this->assertGreaterThan($y_train[$n] * 0.95, $y_predict);
-            $this->assertLessThan($y_train[$n] * 1.05, $y_predict);
-        }
-
-        $y_predict = [];
-
-        for ($n = 0; $n < count($y_train); $n++) {
-            $y_predict[$n] = $linear->predict($x_train[$n]);
-        }
-
-        $this->assertNotEquals(0, $linear->validate('mean_squared_error', $y_train, $y_predict));
     }
+
+    public function testLoadModel() : void
+    {
+        $linear = new LinearRegression();
+
+        $linear->setTrain($this->df);
+
+        $model = '{"type":"LinearRegression","xColumn":"height_cm","yColumn":"weight_kg","slope":0.35365853658536583,"intercept":0,"metric":"mean_squared_error"}';
+
+        $linear->loadModel($model);
+
+        $y_test = $linear->predict($this->data['height_cm']);
+
+        $this->assertEquals(-0.002, $linear->validate($this->data['weight_kg'], $y_test));
+    }
+
 }
