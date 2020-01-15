@@ -1,8 +1,8 @@
 IntelliPHP
 ==========
 
-|PHP from Packagist| |Latest Stable Version|
-|Build Status| |Coverage Status| |Scrutinizer Code Quality| |Documentation Status| |Total Downloads|
+|PHP from Packagist| |Latest Stable Version| |Build Status|
+|Coverage Status| |Scrutinizer Code Quality| |Documentation Status| |Total Downloads|
 |License|
 
 Composer Library for Machine Learning.

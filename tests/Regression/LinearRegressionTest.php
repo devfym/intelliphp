@@ -5,7 +5,6 @@ namespace devfym\Tests\Regression;
 use devfym\IntelliPHP\Data\DataFrame;
 use devfym\IntelliPHP\Regression\LinearRegression;
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\Diff\Line;
 
 class LinearRegressionTest extends TestCase
 {
