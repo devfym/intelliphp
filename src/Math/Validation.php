@@ -30,6 +30,6 @@ class Validation
      */
     public static function RootMeanSquaredError(array $expected, array $actual) : float
     {
-        return round(sqrt(self::MeanSquaredError($expected, $actual)), 4);
+        return round(sqrt(abs(self::MeanSquaredError($expected, $actual))), 4);
     }
 }
