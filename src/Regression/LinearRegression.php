@@ -3,6 +3,7 @@
 namespace devfym\IntelliPHP\Regression;
 
 use devfym\IntelliPHP\Data\DataFrame;
+use devfym\IntelliPHP\Math\Validation;
 
 class LinearRegression
 {
@@ -92,23 +93,25 @@ class LinearRegression
     }
 
     /**
-     * @param $y_train
-     * @param $y_test
-     * @return float
+     * @param $expected
+     * @param $actual
+     * @return mixed
      */
-    public function validate($y_train, $y_test) : float
+    public function validate($expected, $actual)
     {
-        $n = count($y_train);
-        $total_diff = 0;
+        switch ($this->metric) {
 
-        if ($this->metric == 'mean_squared_error') {
-            for ($i = 0; $i < $n; $i++) {
-                $total_diff += $y_test[$i] - $y_train[$i];
-            }
-            $total_diff /= $n;
+            case 'mean_squared_error':
+            case 'mse':
+                return Validation::MeanSquaredError($expected, $actual);
+
+            case 'root_mean_squared_error':
+            case 'rmse':
+                return Validation::RootMeanSquaredError($expected, $actual);
+
+            default:
+                return NULL;
         }
-
-        return round($total_diff, 4);
     }
 
     public function saveModel() : string
