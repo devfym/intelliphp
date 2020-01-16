@@ -51,6 +51,7 @@ class LinearRegressionTest extends TestCase
 
         $linear->setTrain($this->df);
 
+        // Test with Mean Squared Error
         $linear->model('height_cm', 'weight_kg', 'mean_squared_error');
 
         $y_test = $linear->predict($this->data['height_cm']);
@@ -64,6 +65,34 @@ class LinearRegressionTest extends TestCase
          *
          */
 
+        // Test with MSE
+        $linear->model('height_cm', 'weight_kg', 'mse');
+
+        $y_test = $linear->predict($this->data['height_cm']);
+
+        $this->assertEquals(-0.002, $linear->validate($this->data['weight_kg'], $y_test));
+
+        // Test with Root Mean Squared Error
+
+        $linear->model('height_cm', 'weight_kg', 'root_mean_squared_error');
+
+        $y_test = $linear->predict($this->data['height_cm']);
+
+        $this->assertEquals(0.0447, $linear->validate($this->data['weight_kg'], $y_test));
+
+        // Test with RMSE
+
+        $linear->model('height_cm', 'weight_kg', 'rmse');
+
+        $y_test = $linear->predict($this->data['height_cm']);
+
+        $this->assertEquals(0.0447, $linear->validate($this->data['weight_kg'], $y_test));
+
+        $linear->model('height_cm', 'weight_kg', 'invalid-metric');
+
+        $y_test = $linear->predict($this->data['height_cm']);
+
+        $this->assertEquals(NULL, $linear->validate($this->data['weight_kg'], $y_test));
     }
 
     public function testLoadModel() : void

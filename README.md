@@ -1,11 +1,11 @@
 # IntelliPHP
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/devfym/intelliphp)
 [![Latest Stable Version](https://poser.pugx.org/devfym/intelliphp/v/stable)](https://packagist.org/packages/devfym/intelliphp)
+[![Total Downloads](https://poser.pugx.org/devfym/intelliphp/downloads)](https://packagist.org/packages/devfym/intelliphp)
 [![Build Status](https://travis-ci.com/devfym/intelliphp.svg?branch=master)](https://travis-ci.com/devfym/intelliphp)
 [![Coverage Status](https://coveralls.io/repos/github/devfym/intelliphp/badge.svg?branch=master)](https://coveralls.io/github/devfym/intelliphp?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/devfym/intelliphp/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/devfym/intelliphp/?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/intelliphp/badge/?version=latest)](https://intelliphp.readthedocs.io/en/latest/?badge=latest)
-[![Total Downloads](https://poser.pugx.org/devfym/intelliphp/downloads)](https://packagist.org/packages/devfym/intelliphp)
 [![License](https://poser.pugx.org/devfym/intelliphp/license)](https://packagist.org/packages/devfym/intelliphp)
 
 Composer Library for Machine Learning.
@@ -39,6 +39,9 @@ Currently it requires PHP Version >= 7.2
         - ReLU
         - Sigmoid
         - Softmax
+    - Validation
+        - Mean Squared Error (MSE)
+        - Root Mean Squared Error (RMSE)
 - Regression
     - [Linear Regression](docs/Regression/LinearRegression.rst)
  
