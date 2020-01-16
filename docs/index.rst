@@ -2,7 +2,7 @@ IntelliPHP
 ==========
 
 |PHP from Packagist| |Latest Stable Version| |Build Status|
-|Coverage Status| |Scrutinizer Code Quality| |Documentation Status| |Total Downloads|
+|Coverage Status| |Documentation Status| |Total Downloads|
 |License|
 
 Composer Library for Machine Learning.
@@ -43,6 +43,11 @@ Features
    - Differences
 
       - F Test
+
+   - Activation Function
+      - ReLU
+      - Sigmoid
+      - Softmax
 
 -  Regression
 
@@ -125,8 +130,6 @@ Linear Regression
    :target: https://travis-ci.com/devfym/intelliphp
 .. |Coverage Status| image:: https://coveralls.io/repos/github/devfym/intelliphp/badge.svg?branch=master
    :target: https://coveralls.io/github/devfym/intelliphp?branch=master
-.. |Scrutinizer Code Quality| image:: https://scrutinizer-ci.com/g/devfym/intelliphp/badges/quality-score.png?b=master
-   :target: https://scrutinizer-ci.com/g/devfym/intelliphp/?branch=master
 .. |Documentation Status| image:: https://readthedocs.org/projects/intelliphp/badge/?version=latest
    :target: https://intelliphp.readthedocs.io/en/latest/?badge=latest
 .. |Total Downloads| image:: https://poser.pugx.org/devfym/intelliphp/downloads

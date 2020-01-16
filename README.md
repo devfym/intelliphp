@@ -21,8 +21,8 @@ Currently it requires PHP Version >= 7.2
 ## Features
 
 - Data
-    - [DataFrame](docs/Data/DataFrame.md)
-    - [Series](docs/Data/Series.md)
+    - [DataFrame](docs/Data/DataFrame.rst)
+    - [Series](docs/Data/Series.rst)
 - Math (method in DataFrame / Series)
     - Min, Max, Mean, Median
     - Standard Deviation
@@ -35,8 +35,12 @@ Currently it requires PHP Version >= 7.2
         - Kendall Rank Correlation
     - Differences
         - F Test
+    - Activation Function
+        - ReLU
+        - Sigmoid
+        - Softmax
 - Regression
-    - [Linear Regression](docs/Regression/LinearRegression.md)
+    - [Linear Regression](docs/Regression/LinearRegression.rst)
  
 ## Examples
 
