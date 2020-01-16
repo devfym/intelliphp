@@ -39,6 +39,9 @@ Currently it requires PHP Version >= 7.2
         - ReLU
         - Sigmoid
         - Softmax
+    - Validation
+        - Mean Squared Error (MSE)
+        - Root Mean Squared Error (RMSE)
 - Regression
     - [Linear Regression](docs/Regression/LinearRegression.rst)
  
