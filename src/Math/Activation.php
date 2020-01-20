@@ -29,15 +29,11 @@ class Activation
     public static function Softmax(array $inputs) : array
     {
         $exp = array_map('exp', $inputs);
-
         $sum_exp = array_sum($exp);
-
         $y = [];
 
         foreach($exp as $e) {
-
             array_push($y,$e / $sum_exp);
-
         }
 
         return $y;
